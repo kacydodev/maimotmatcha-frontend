@@ -43,6 +43,18 @@ export default async function HomePage() {
 							},
 						},
 					},
+					'blocks.testimonial-section': {
+						populate: {
+							customers: {
+								fields: ['name', 'address', 'statement'],
+								populate: {
+									avatar: {
+										fields: ['alternativeText', 'name', 'url'],
+									},
+								},
+							},
+						},
+					},
 				},
 			},
 		},
