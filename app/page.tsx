@@ -19,6 +19,30 @@ export default async function HomePage() {
 							},
 						},
 					},
+					'blocks.about-section': {
+						populate: {
+							image: {
+								fields: ['alternativeText', 'name', 'url'],
+							},
+						},
+					},
+					'blocks.product-section': {
+						populate: {
+							categories: {
+								fields: ['name', 'slug', 'description'],
+								populate: {
+									products: {
+										fields: ['name', 'description', 'price', 'netWeight'],
+										populate: {
+											image: {
+												fields: ['alternativeText', 'name', 'url'],
+											},
+										},
+									},
+								},
+							},
+						},
+					},
 				},
 			},
 		},
@@ -28,7 +52,6 @@ export default async function HomePage() {
 		method: 'GET',
 		authToken: AUTH_TOKEN,
 	});
-	console.log(url.href);
 
 	return (
 		<>
