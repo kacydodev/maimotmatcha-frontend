@@ -1,5 +1,16 @@
 import { fetchAPI } from '@/utils/fetchAPI';
 import qs from 'qs';
+import BuyButton from '../components/BuyButton';
+
+// product id
+// prod_TL9xbMWq73Iz8g
+// price_1SOTdBL9DG9PVRBWzZSFZW9H
+
+// Test card
+// 4242424242424242
+
+// success session href
+// http://localhost:3000/success?session_id=cs_test_a1qgm7lcdlSo5jww7x4JnJLDROiXVdeWfSd1kB1W7CSXiRBWdMbMzFoClS
 
 export default async function TestPage() {
 	const AUTH_TOKEN = process.env.AUTH_TOKEN;
@@ -41,10 +52,11 @@ export default async function TestPage() {
 		method: 'GET',
 		authToken: AUTH_TOKEN,
 	});
-	console.log(url.href);
+	// console.log(url.href);
 
 	return (
 		<>
+			<BuyButton priceId='price_1SOTdBL9DG9PVRBWzZSFZW9H' />
 			<pre>{JSON.stringify(data, null, 2)}</pre>
 		</>
 	);
