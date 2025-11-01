@@ -10,11 +10,26 @@ export default async function TestPage() {
 
 	url.search = qs.stringify({
 		populate: {
+			background: {
+				fields: ['alternativeText', 'name', 'url'],
+			},
 			blocks: {
 				on: {
 					'blocks.simple': {
 						populate: {
-							cta: true,
+							categories: {
+								fields: ['name', 'slug', 'description'],
+								populate: {
+									products: {
+										fields: ['name', 'description', 'price', 'netWeight'],
+										populate: {
+											image: {
+												fields: ['alternativeText', 'name', 'url'],
+											},
+										},
+									},
+								},
+							},
 						},
 					},
 				},
