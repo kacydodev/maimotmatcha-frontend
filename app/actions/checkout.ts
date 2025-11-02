@@ -2,23 +2,19 @@
 
 import Stripe from 'stripe';
 import { redirect } from 'next/navigation';
+import { CartItem } from '@/types';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-export async function createCheckoutSession(priceId: string) {
-	console.log('priceId:', priceId);
-	// get auth session
-
-	// create checkout session
+export async function createCheckoutSession(items: CartItem[]) {
 	const checkoutSession = await stripe.checkout.sessions.create({
 		mode: 'payment',
-		// payment_method_types: ['card'],
-		line_items: [
-			{
-				price: priceId,
-				quantity: 1,
-			},
-		],
+
+		line_items: items.map((item) => ({
+			price: item.priceId,
+			quantity: item.quantity,
+		})),
+
 		success_url: `${process.env.NEXT_PUBLIC_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
 		cancel_url: `${process.env.NEXT_PUBLIC_URL}/pricing`,
 	});

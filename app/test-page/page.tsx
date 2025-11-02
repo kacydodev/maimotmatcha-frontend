@@ -1,7 +1,5 @@
 import { fetchAPI } from '@/utils/fetchAPI';
 import qs from 'qs';
-import BuyButton from '../components/BuyButton';
-import { seedProducts } from '@/utils/seedStripe';
 
 // product id
 // prod_TL9xbMWq73Iz8g
@@ -66,13 +64,10 @@ export default async function TestPage() {
 		method: 'GET',
 		authToken: AUTH_TOKEN,
 	});
-	// console.log(url.href);
-
-	// seedProducts();
 
 	return (
 		<>
-			<BuyButton priceId='price_1SOTdBL9DG9PVRBWzZSFZW9H' />
+			{/* <BuyButton priceId='price_1SOTdBL9DG9PVRBWzZSFZW9H' /> */}
 			<pre>{JSON.stringify(data, null, 2)}</pre>
 		</>
 	);
