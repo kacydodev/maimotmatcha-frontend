@@ -1,5 +1,6 @@
 import { fetchAPI } from '@/utils/fetchAPI';
 import qs from 'qs';
+import CheckoutButton from '../components/CheckoutButton';
 
 // product id
 // prod_TL9xbMWq73Iz8g
@@ -19,17 +20,17 @@ export default async function TestPage() {
 	// const path = '/api/test-page?populate=*';
 	const url = new URL(path, BASE_URL);
 
-	url.search = qs.stringify({
-		fields: ['name', 'description', 'price', 'netWeight'],
-		populate: {
-			image: {
-				fields: ['alternativeText', 'name', 'url'],
-			},
-			category: {
-				fields: ['name'],
-			},
-		},
-	});
+	// url.search = qs.stringify({
+	// 	fields: ['name', 'description', 'price', 'netWeight'],
+	// 	populate: {
+	// 		image: {
+	// 			fields: ['alternativeText', 'name', 'url'],
+	// 		},
+	// 		category: {
+	// 			fields: ['name'],
+	// 		},
+	// 	},
+	// });
 
 	// url.search = qs.stringify({
 	// 	populate: {
@@ -67,6 +68,7 @@ export default async function TestPage() {
 
 	return (
 		<>
+			<CheckoutButton />
 			{/* <BuyButton priceId='price_1SOTdBL9DG9PVRBWzZSFZW9H' /> */}
 			<pre>{JSON.stringify(data, null, 2)}</pre>
 		</>
