@@ -1,6 +1,7 @@
 import { fetchAPI } from '@/utils/fetchAPI';
 import qs from 'qs';
 import CheckoutButton from '../components/CheckoutButton';
+import CartContextProvider from '@/utils/context/CartContextProvider';
 
 // product id
 // prod_TL9xbMWq73Iz8g
@@ -67,10 +68,10 @@ export default async function TestPage() {
 	});
 
 	return (
-		<>
+		<CartContextProvider>
 			<CheckoutButton />
 			{/* <BuyButton priceId='price_1SOTdBL9DG9PVRBWzZSFZW9H' /> */}
-			<pre>{JSON.stringify(data, null, 2)}</pre>
-		</>
+			{/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+		</CartContextProvider>
 	);
 }
